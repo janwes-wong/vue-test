@@ -14,7 +14,6 @@ module.exports = defineConfig({
         target: 'http://localhost:48000/api',
         // websocket
         ws: true,
-        // 
         changeOrigin: true
       },
       '/test': {
