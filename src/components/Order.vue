@@ -5,10 +5,13 @@
     <p><span>订单名称:</span> {{ orderInfo.orderName }}</p>
     <button @click="sendOrderInfo()">向App发送订单信息</button>
     <button @click="kill()">kill</button>
+    <button @click="requestItem()">请求服务器获取商品信息</button>
   </div>
 </template>
 
 <script>
+// 引入axios
+import axios from "axios";
 // 引入消息发布与订阅依赖
 import pubsub from "pubsub-js";
 
@@ -26,6 +29,17 @@ export default {
   methods: {
     sendOrderInfo() {
       this.getOrderInfo(this.orderInfo);
+    },
+
+    requestItem() {
+      axios.get("http://localhost:8080/test/getItemInfo").then(
+        (response) => {
+          console.log("请求成功!!!", response.data);
+        },
+        (error) => {
+          console.log("请求失败!!!", error);
+        }
+      );
     },
   },
   mounted() {
